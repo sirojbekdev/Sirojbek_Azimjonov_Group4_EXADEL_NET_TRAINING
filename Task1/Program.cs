@@ -6,8 +6,13 @@ namespace Task1
     {
         static void Main(string[] args)
         {
-            for (var a = 4; a < 10; a++)
-               Console.WriteLine(a);            
+            var text = "Number: ";
+
+            for (var a = 1; a < 10; a++)
+            {
+                Console.WriteLine(text + a);
+                Console.ReadKey();
+            }
         }
     }
 }
