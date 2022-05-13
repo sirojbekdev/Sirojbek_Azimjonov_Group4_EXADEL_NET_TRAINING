@@ -1,0 +1,23 @@
+
+  [
+    {
+      "city": "Pinsk",
+      "population": 41000
+    },
+    {
+      "city": "Slavinsk",
+      "population": 72000
+    },
+    {
+      "city": "Tashkent",
+      "population": 60000
+    },
+    {
+      "city": "city1",
+      "population": 36000
+    },
+    {
+      "city": "city2",
+      "population": 57000
+    }
+  ]
