@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -10,24 +11,18 @@ namespace Task2._2
     {
         static void Main(string[] args)
         {
-            string file1 = System.IO.File.ReadAllText(AppDomain.CurrentDomain.BaseDirectory+"Files/file1.txt");
-            string file2 = System.IO.File.ReadAllText(AppDomain.CurrentDomain.BaseDirectory+"Files/file2.txt");
-            string file3 = System.IO.File.ReadAllText(AppDomain.CurrentDomain.BaseDirectory+"Files/file3.txt");
+            string Path = AppDomain.CurrentDomain.BaseDirectory + "Files/";
+            StringBuilder sb = new StringBuilder();
+            string File1 = File.ReadAllText(Path+"file1.txt");
+            string File2 = File.ReadAllText(Path+"file2.txt");
+            string File3 = File.ReadAllText(Path+"file3.txt");
             string[] files = new string[]
             {
-                file1,file2,file3
+                File1,File2,File3
             };
-            //Console.WriteLine(text);
-            //List<string> files = new List<string>()
-            //{
-            //    " Ak! NjodH22# pknGhb** gggruuee$67",
-            //    "fkrfji rgjir rmgjK",
-            //    "1111 1$%^&*"
-            //};
 
             foreach (string file in files)
             {
-
                 Console.WriteLine(file);
             }
 
@@ -49,10 +44,23 @@ namespace Task2._2
                 files[file] = string.Join(" ", temp);
             }
             files = files.OrderBy(x=>x.Length).ToArray();
-            Console.WriteLine("After Changes");
             foreach (string file in files)
             {
-                Console.WriteLine(file);
+               sb.AppendLine(file);
+            }
+
+            // Saving the output to file in bin/Debug/net5.0/Files
+            using (StreamWriter sw = new StreamWriter(Path+"output.txt"))
+            {
+                // Deleting original files from bin/Debug/net5.0/Files
+                // Only output.txt is there
+                File.Delete(Path + "file1.txt");
+                File.Delete(Path + "file2.txt");
+                File.Delete(Path + "file3.txt");
+                foreach (string file in files)
+                {
+                    sw.WriteLine(file);
+                }
             }
         }
     }
