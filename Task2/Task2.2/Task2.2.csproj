@@ -1,0 +1,48 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net5.0</TargetFramework>
+    <RootNamespace>Task2._2</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Files\file1.txt" />
+    <None Remove="Files\file2.txt" />
+    <None Remove="Files\file3.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Files\file1.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Files\file2.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Files\file3.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <!--<ItemGroup>
+    <Compile Remove="Program.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Files\file1.txt" />
+    <None Remove="Files\file2.txt" />
+    <None Remove="Files\file3.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Files\file1.txt" />
+    <Resource Include="Files\file2.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Files\file3.txt" />
+    <Resource Include="Program.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>-->
+
+</Project>
