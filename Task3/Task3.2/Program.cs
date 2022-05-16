@@ -30,4 +30,4 @@ foreach (var inhabitant in joinedTable)
     {
         Console.WriteLine($"{inhabitant.name} {inhabitant.surname} is not employable");
     }
-};
+}
