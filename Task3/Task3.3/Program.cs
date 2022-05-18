@@ -2,22 +2,13 @@
 
 bool isMatch(char item1, char item2)
 {
-    if(item1== '[' && item2== ']')
+    return item1 switch
     {
-        return true;
-    }
-    else if(item1== '(' && item2== ')')
-    {
-        return true;
-    }
-    else if(item1 == '{' && item2 == '}')
-    {
-        return true;
-    }
-    else
-    {
-        return false;
-    }
+        '[' when item2 == ']' => true,
+        '(' when item2 == ')' => true,
+        '{' when item2 == '}' => true,
+        _ => false
+    };
 }
 
 bool CheckPlacement(string inputText)
@@ -26,7 +17,8 @@ bool CheckPlacement(string inputText)
 
     for (int i = 0; i < inputText.Length; i++)
     {
-        if ("[{(".Contains(inputText[i])) {
+        if ("[{(".Contains(inputText[i]))
+        {
             stack.Push(inputText[i]);
         }
 
@@ -71,5 +63,12 @@ var usedBrackets = pattern switch
     _ => Regex.Replace(text, @"[^][{}()]", "")
 };
 
-Console.WriteLine(usedBrackets + " - " + CheckPlacement(usedBrackets));
+if (usedBrackets.CompareTo(pattern)>=0)
+{
+    Console.WriteLine(usedBrackets + " - " + CheckPlacement(usedBrackets));
+}
+else
+{
+    Console.WriteLine(text + " - text does not contain all brackets in the pattern");
+}
 
