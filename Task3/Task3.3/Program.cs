@@ -62,8 +62,19 @@ var usedBrackets = pattern switch
     "[](){}" or "(){}[]" or "{}[]()" or "()[]{}" or "[]{}()" or "{}()[]" => Regex.Replace(text, @"[^][{}()]", ""),
     _ => Regex.Replace(text, @"[^][{}()]", "")
 };
+ 
+bool ContainsPattern(string item1, string item2)
+{
+    char[] arr = item2.ToCharArray();
+    foreach (char c in arr)
+    {
+       if (!item1.Contains(c) ) { return false;  } 
+    }
+    return true;
+}
 
-if (usedBrackets.CompareTo(pattern)>=0)
+//MemoryExtensions.Contains(usedBrackets., pattern.ToCharArray());
+if (ContainsPattern(usedBrackets, pattern))
 {
     Console.WriteLine(usedBrackets + " - " + CheckPlacement(usedBrackets));
 }
