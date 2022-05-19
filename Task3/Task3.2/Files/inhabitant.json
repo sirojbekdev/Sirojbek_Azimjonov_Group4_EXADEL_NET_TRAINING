@@ -1,0 +1,32 @@
+[
+  {
+    "name": "Roman",
+    "surname": "Terehovich",
+    "age": 15,
+    "city": "Pinsk"
+  },
+  {
+    "name": "Ruds",
+    "surname": "Komorh",
+    "age": 25,
+    "city": "city1"
+  },
+  {
+    "name": "Ruslana",
+    "surname": "Komorovich",
+    "age": 35,
+    "city": "Slavinsk"
+  },
+  {
+    "name": "Sirojbek",
+    "surname": "Azimjonov",
+    "age": 35,
+    "city": "Tashkent"
+  },
+  {
+    "name": "Alex",
+    "surname": "Jones",
+    "age": 12,
+    "city": "city2"
+  }
+]
