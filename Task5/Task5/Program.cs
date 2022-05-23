@@ -86,18 +86,9 @@ else if (key == 3)
 }
 else if(key == 4)
 {
-    var subjects = context.Subjects.ToList();
-    if(subjects != null)
-    {
-        foreach (var subject in subjects)
-        {
-            Console.WriteLine($"Subject id: {subject.Id}, Subject name: {subject.Name}");
-        }
-    }
-    else
-    {
-        Console.WriteLine("List is empty");
-    }
+    Console.WriteLine("Enter the id of subject");
+    var id = Convert.ToInt32(Console.ReadLine());
+    GetById(id);
 }
 else if (key == 5)
 {
