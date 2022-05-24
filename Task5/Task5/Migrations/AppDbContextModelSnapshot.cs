@@ -40,7 +40,7 @@ namespace Task5.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Classes");
+                    b.ToTable("Classes", (string)null);
                 });
 
             modelBuilder.Entity("Task5.Models.ClassSubject", b =>
@@ -55,7 +55,7 @@ namespace Task5.Migrations
 
                     b.HasIndex("SubjectId");
 
-                    b.ToTable("ClassSubjects");
+                    b.ToTable("ClassSubjects", (string)null);
                 });
 
             modelBuilder.Entity("Task5.Models.Student", b =>
@@ -96,7 +96,7 @@ namespace Task5.Migrations
 
                     b.HasIndex("ClassId");
 
-                    b.ToTable("Students");
+                    b.ToTable("Students", (string)null);
                 });
 
             modelBuilder.Entity("Task5.Models.Subject", b =>
@@ -114,7 +114,7 @@ namespace Task5.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Subjects");
+                    b.ToTable("Subjects", (string)null);
                 });
 
             modelBuilder.Entity("Task5.Models.ClassSubject", b =>

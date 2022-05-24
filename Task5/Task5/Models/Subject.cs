@@ -14,6 +14,6 @@ namespace Task5.Models
         [Required]
         [StringLength(50)]
         public string Name { get; set; }
-        public ICollection<ClassSubject> ClassSubjects { get; set; }
+        public virtual ICollection<ClassSubject> ClassSubjects { get; set; }
     }
 }

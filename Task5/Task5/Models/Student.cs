@@ -27,6 +27,6 @@ namespace Task5.Models
         [StringLength(100)]
         public string Address { get; set; }
         public int ClassId { get; set; }
-        public Class Class { get; set; }
+        public virtual Class Class { get; set; }
     }
 }

@@ -23,7 +23,7 @@ namespace Task5.Data
         }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(_ConnectionString);
+            optionsBuilder.UseLazyLoadingProxies().UseSqlServer(_ConnectionString);
         }
         public DbSet<Class> Classes { get; set; }
         public DbSet<Student> Students { get; set; }

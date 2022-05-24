@@ -13,12 +13,13 @@ void Create(string name)
         };
         context.Subjects.Add(subject);
         context.SaveChanges();
-        Console.WriteLine("Subject created successfully");
+        Console.WriteLine($"Subject created successfully. Subject id: {subject.Id}, Subject name: {subject.Name}");
     }
     else
     {
         Console.WriteLine("Wrong input");
     }
+    Start();
 }
 void Update(int id, string newName)
 {
@@ -33,6 +34,7 @@ void Update(int id, string newName)
     {
         Console.WriteLine("Wrong input");
     }
+    Start();
 }
 void Delete(int id)
 {
@@ -47,6 +49,7 @@ void Delete(int id)
     {
         Console.WriteLine("Wrong input");
     }
+    Start();
 }
 void GetById(int id)
 {
@@ -59,42 +62,47 @@ void GetById(int id)
     {
         Console.WriteLine("Wrong input");
     }
+    Start();
 }
 
-Console.WriteLine("1.Create subject \n2.Update subject by ID\n3.Delete subject by ID\n4.Read subject by ID\n5.Exit");
-var key = Convert.ToInt32(Console.ReadLine());
-Console.WriteLine(key);
-if(key == 1)
+void Start()
 {
-    Console.WriteLine("Enter name for new subject");
-    var name = Console.ReadLine();
-    Create(name);
+    Console.WriteLine("1.Create subject \n2.Update subject by ID\n3.Delete subject by ID\n4.Read subject by ID\n5.Exit");
+    var key = Convert.ToInt32(Console.ReadLine());
+    Console.WriteLine(key);
+    if (key == 1)
+    {
+        Console.WriteLine("Enter name for new subject");
+        var name = Console.ReadLine();
+        Create(name);
+    }
+    else if (key == 2)
+    {
+        Console.WriteLine("Enter the id of subject");
+        var id = Convert.ToInt32(Console.ReadLine());
+        Console.WriteLine("Enter new name for the subject");
+        var newName = Console.ReadLine();
+        Update(id, newName);
+    }
+    else if (key == 3)
+    {
+        Console.WriteLine("Enter the id of subject");
+        var id = Convert.ToInt32(Console.ReadLine());
+        Delete(id);
+    }
+    else if (key == 4)
+    {
+        Console.WriteLine("Enter the id of subject");
+        var id = Convert.ToInt32(Console.ReadLine());
+        GetById(id);
+    }
+    else if (key == 5)
+    {
+        Environment.Exit(0);
+    }
+    else
+    {
+        Console.WriteLine("Wrong input");
+    }
 }
-else if(key == 2)
-{
-    Console.WriteLine("Enter the id of subject");
-    var id = Convert.ToInt32(Console.ReadLine());
-    Console.WriteLine("Enter new name for the subject");
-    var newName = Console.ReadLine();
-    Update(id,newName);
-}
-else if (key == 3)
-{
-    Console.WriteLine("Enter the id of subject");
-    var id = Convert.ToInt32(Console.ReadLine());
-    Delete(id);
-}
-else if(key == 4)
-{
-    Console.WriteLine("Enter the id of subject");
-    var id = Convert.ToInt32(Console.ReadLine());
-    GetById(id);
-}
-else if (key == 5)
-{
-    Environment.Exit(0);
-}
-else
-{
-    Console.WriteLine("Wrong input");
-}
+Start();
