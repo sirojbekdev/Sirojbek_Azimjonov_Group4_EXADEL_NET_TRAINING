@@ -19,6 +19,7 @@ async Task CreateAsync(string name)
     {
         Console.WriteLine("Wrong input");
     }
+    await StartAsync();
 }
 async Task UpdateAsync(int id, string newName)
 {
@@ -33,6 +34,7 @@ async Task UpdateAsync(int id, string newName)
     {
         Console.WriteLine("Wrong input or data does not exist");
     }
+    await StartAsync();
 }
 async Task DeleteAsync(int id)
 {
@@ -47,6 +49,7 @@ async Task DeleteAsync(int id)
     {
         Console.WriteLine("Wrong input or data does not exist");
     }
+    await StartAsync();
 }
 async Task GetByIdAsync(int id)
 {
@@ -59,42 +62,48 @@ async Task GetByIdAsync(int id)
     {
         Console.WriteLine("Wrong input or data does not exist");
     }
+    await StartAsync();
 }
 
-Console.WriteLine("1.Create subject \n2.Update subject by ID\n3.Delete subject by ID\n4.Read subject by ID\n5.Exit");
-var key = Convert.ToInt32(Console.ReadLine());
-Console.WriteLine(key);
-if (key == 1)
+async Task StartAsync()
 {
-    Console.WriteLine("Enter name for new subject");
-    var name = Console.ReadLine();
-    await CreateAsync(name);
+    Console.WriteLine("1.Create subject \n2.Update subject by ID\n3.Delete subject by ID\n4.Read subject by ID\n5.Exit");
+    var key = Convert.ToInt32(Console.ReadLine());
+    Console.WriteLine(key);
+    if (key == 1)
+    {
+        Console.WriteLine("Enter name for new subject");
+        var name = Console.ReadLine();
+        await CreateAsync(name);
+    }
+    else if (key == 2)
+    {
+        Console.WriteLine("Enter the id of subject");
+        var id = Convert.ToInt32(Console.ReadLine());
+        Console.WriteLine("Enter new name for the subject");
+        var newName = Console.ReadLine();
+        await UpdateAsync(id, newName);
+    }
+    else if (key == 3)
+    {
+        Console.WriteLine("Enter the id of subject");
+        var id = Convert.ToInt32(Console.ReadLine());
+        await DeleteAsync(id);
+    }
+    else if (key == 4)
+    {
+        Console.WriteLine("Enter the id of subject");
+        var id = Convert.ToInt32(Console.ReadLine());
+        await GetByIdAsync(id);
+    }
+    else if (key == 5)
+    {
+        Environment.Exit(0);
+    }
+    else
+    {
+        Console.WriteLine("Wrong input");
+    }
 }
-else if (key == 2)
-{
-    Console.WriteLine("Enter the id of subject");
-    var id = Convert.ToInt32(Console.ReadLine());
-    Console.WriteLine("Enter new name for the subject");
-    var newName = Console.ReadLine();
-    await UpdateAsync(id, newName);
-}
-else if (key == 3)
-{
-    Console.WriteLine("Enter the id of subject");
-    var id = Convert.ToInt32(Console.ReadLine());
-    await DeleteAsync(id);
-}
-else if (key == 4)
-{
-    Console.WriteLine("Enter the id of subject");
-    var id = Convert.ToInt32(Console.ReadLine());
-    await GetByIdAsync(id);
-}
-else if (key == 5)
-{
-    Environment.Exit(0);
-}
-else
-{
-    Console.WriteLine("Wrong input");
-}
+
+await StartAsync();
