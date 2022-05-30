@@ -1,18 +1,19 @@
 ﻿using Task6._1.Data;
 using Task6._1.Models;
 
-var context = new AppDbContext();
-
 async Task CreateAsync(string name)
 {
     if (name != null)
     {
-        Subject subject = new()
+        using (var context = new AppDbContext())
         {
-            Name = name
-        };
-        context.Subjects.Add(subject);
-        await context.SaveChangesAsync();
+            Subject subject = new()
+            {
+                Name = name
+            };
+            context.Subjects.Add(subject);
+            await context.SaveChangesAsync();
+        }
         Console.WriteLine("Subject created successfully");
     }
     else
@@ -23,44 +24,53 @@ async Task CreateAsync(string name)
 }
 async Task UpdateAsync(int id, string newName)
 {
-    var subject = await context.Subjects.FindAsync(id);
-    if (subject != null)
+    using (var context = new AppDbContext())
     {
-        subject.Name = newName;
-        await context.SaveChangesAsync();
-        Console.WriteLine("Subject updated successfully");
-    }
-    else
-    {
-        Console.WriteLine("Wrong input or data does not exist");
+        var subject = await context.Subjects.FindAsync(id);
+        if (subject != null)
+        {
+            subject.Name = newName;
+            await context.SaveChangesAsync();
+            Console.WriteLine("Subject updated successfully");
+        }
+        else
+        {
+            Console.WriteLine("Wrong input or data does not exist");
+        }
     }
     await StartAsync();
 }
 async Task DeleteAsync(int id)
 {
-    var subject = await context.Subjects.FindAsync(id);
-    if (subject != null)
+    using (var context = new AppDbContext())
     {
-        context.Subjects.Remove(subject);
-        await context.SaveChangesAsync();
-        Console.WriteLine("Subject deleted successfully");
-    }
-    else
-    {
-        Console.WriteLine("Wrong input or data does not exist");
+        var subject = await context.Subjects.FindAsync(id);
+        if (subject != null)
+        {
+            context.Subjects.Remove(subject);
+            await context.SaveChangesAsync();
+            Console.WriteLine("Subject deleted successfully");
+        }
+        else
+        {
+            Console.WriteLine("Wrong input or data does not exist");
+        }
     }
     await StartAsync();
 }
 async Task GetByIdAsync(int id)
 {
-    var subject = await context.Subjects.FindAsync(id);
-    if (subject != null)
+    using (var context = new AppDbContext())
     {
-        Console.WriteLine($"Subject id: {subject.Id}, Subject name: {subject.Name}");
-    }
-    else
-    {
-        Console.WriteLine("Wrong input or data does not exist");
+        var subject = await context.Subjects.FindAsync(id);
+        if (subject != null)
+        {
+            Console.WriteLine($"Subject id: {subject.Id}, Subject name: {subject.Name}");
+        }
+        else
+        {
+            Console.WriteLine("Wrong input or data does not exist");
+        }
     }
     await StartAsync();
 }
