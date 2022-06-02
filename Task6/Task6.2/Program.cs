@@ -16,8 +16,8 @@ else if (key == 2) {
 	Stopwatch stopwatch = Stopwatch.StartNew();
 	Console.WriteLine("MultiThreded method");
 	thread1.Start();
-	thread1.Join();
 	thread2.Start();
+	thread1.Join();
 	thread2.Join();
 	stopwatch.Stop();
 	Console.WriteLine("Time:" + stopwatch.ElapsedMilliseconds);
