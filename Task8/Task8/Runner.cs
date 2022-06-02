@@ -1,13 +1,15 @@
-﻿using System;
+﻿using Microsoft.Extensions.Hosting;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Task7.Data;
 using Task7.Services;
 
 namespace Task8
 {
-    public class Runner
+    public class Runner : IRunner
     {
         public void Run()
         {
