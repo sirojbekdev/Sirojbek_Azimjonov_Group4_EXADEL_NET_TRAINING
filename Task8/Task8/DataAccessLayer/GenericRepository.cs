@@ -13,39 +13,39 @@ namespace Task7.DataAccessLayer
             dbSet = context.Set<TEntity>();
         }
 
-        public virtual void Delete(TEntity entityToDelete)
+        public virtual async Task DeleteAsync(TEntity entityToDelete)
         {
             dbSet.Remove(entityToDelete);
-            Save();
+            await SaveAsync();
         }
 
-        public virtual void Delete(object id)
+        public virtual async Task DeleteAsync(object id)
         {
-            TEntity entity = dbSet.Find(id);
-            Delete(entity);
+            TEntity entity = await dbSet.FindAsync(id);
+            await DeleteAsync(entity);
         }
 
-        public virtual TEntity GetByID(object id)
+        public virtual async Task<TEntity> GetByIdAsync(object id)
         {
-            var res = dbSet.Find(id);
-            return res;
+            return await dbSet.FindAsync(id);
+
         }
 
-        public virtual void Insert(TEntity entity)
+        public virtual async Task InsertAsync(TEntity entity)
         {
-            dbSet.Add(entity);
-            Save();
+            await dbSet.AddAsync(entity);
+            await SaveAsync();
         }
 
-        public virtual void Save()
+        public virtual async Task SaveAsync()
         {
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
 
-        public virtual void Update(TEntity entityToUpdate)
+        public virtual async Task UpdateAsync(TEntity entityToUpdate)
         {
-            dbSet.Attach(entityToUpdate);
-            _context.Entry(entityToUpdate).State = EntityState.Modified;
+            dbSet.Update(entityToUpdate);
+            await SaveAsync();
         }
     }
 }

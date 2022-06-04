@@ -9,12 +9,12 @@ namespace Task8
 {
     class Program
     {
-        static void Main(string[] args)
+        static async Task Main(string[] args)
         {
             var services = StartUp.ConfigureServices();
             var serviceProvider = services.BuildServiceProvider();
 
-            serviceProvider.GetService<Runner>().Run();
+            await serviceProvider.GetService<Runner>().Run();
         }
     }
 }

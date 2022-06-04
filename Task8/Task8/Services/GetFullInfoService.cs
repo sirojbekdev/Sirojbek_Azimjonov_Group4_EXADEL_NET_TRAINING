@@ -8,12 +8,12 @@ namespace Task7.Services
         public string FormatInfoString(Student student)
         {
             StringBuilder sb = new();
-            sb.Append("Id: " + student.Id);
-            sb.Append("FirstName: " + student.FirstName);
-            sb.Append("LastName: " + student.LastName);
-            sb.Append("PhoneNumber: " + student.PhoneNumber);
-            sb.Append("Address: " + student.Address);
-            sb.Append("DateOfBirth: " + student.DateOfBirth);
+            sb.AppendLine("Id: " + student.Id);
+            sb.AppendLine("FirstName: " + student.FirstName);
+            sb.AppendLine("LastName: " + student.LastName);
+            sb.AppendLine("PhoneNumber: " + student.PhoneNumber);
+            sb.AppendLine("Address: " + student.Address);
+            sb.AppendLine("DateOfBirth: " + student.DateOfBirth);
             return sb.ToString();
         }
     }
