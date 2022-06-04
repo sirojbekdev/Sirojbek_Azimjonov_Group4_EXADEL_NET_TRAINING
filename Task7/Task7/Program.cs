@@ -6,19 +6,20 @@ async Task StartAsync()
         "2.Press 2 to get student’s last name by id \n" +
         "3. Exit");
     var serviceChoice = int.Parse(Console.ReadLine());
-    Console.WriteLine("Enter the Id");
-    var id = int.Parse(Console.ReadLine());
-
 
     if (serviceChoice == 1)
     {
         GetStudentInfoService service = new(new GetFullInfoService());
-        Console.WriteLine(service.GetInfo(id));
+        Console.WriteLine("Enter the Id");
+        var id = int.Parse(Console.ReadLine());
+        Console.WriteLine(await service.GetInfo(id));
         await StartAsync();
     }
     else if (serviceChoice == 2)
     {
         GetStudentInfoService service = new(new GetLastNameService());
+        Console.WriteLine("Enter the Id");
+        var id = int.Parse(Console.ReadLine());
         Console.WriteLine(await service.GetInfo(id));
         await StartAsync();
     }
