@@ -19,11 +19,11 @@ namespace Task7.Services
             _infoStringFormatter = infoStringFormatter;
         }
 
-        public string GetInfo(int id)
+        public async Task<string> GetInfo(int id)
         {
             using (var dbContext = new AppDbContext()) {
                     studentContext = new GenericRepository<Student>(dbContext);
-                    var student = studentContext.GetByID(id);
+                    var student = await studentContext.GetByID(id);
                 if (student != null)
                     return _infoStringFormatter.FormatInfoString(student);
                 else

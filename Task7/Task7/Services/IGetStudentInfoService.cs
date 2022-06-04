@@ -2,6 +2,6 @@
 {
     public interface IGetStudentInfoService
     {
-        public string GetInfo(int id); 
+        public Task<string> GetInfo(int id); 
     }
 }
