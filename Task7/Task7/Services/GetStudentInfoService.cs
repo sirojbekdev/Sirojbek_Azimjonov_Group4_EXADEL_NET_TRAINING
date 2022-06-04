@@ -23,7 +23,7 @@ namespace Task7.Services
         {
             using (var dbContext = new AppDbContext()) {
                     studentContext = new GenericRepository<Student>(dbContext);
-                    var student = await studentContext.GetByID(id);
+                    var student = await studentContext.GetByIDAsync(id);
                 if (student != null)
                     return _infoStringFormatter.FormatInfoString(student);
                 else

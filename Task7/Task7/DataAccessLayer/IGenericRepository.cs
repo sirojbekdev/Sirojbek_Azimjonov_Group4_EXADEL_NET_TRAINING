@@ -2,11 +2,11 @@
 {
     public interface IGenericRepository<TEntity> where TEntity : class
     {
-        Task Delete(TEntity entityToDelete);
-        Task Delete(object id);
-        Task<TEntity> GetByID(object id);
-        Task Insert(TEntity entity);
-        Task Update(TEntity entityToUpdate);
-        Task Save();
+        Task DeleteAsync(TEntity entityToDelete);
+        Task DeleteAsync(object id);
+        Task<TEntity> GetByIDAsync(object id);
+        Task InsertAsync(TEntity entity);
+        Task UpdateAsync(TEntity entityToUpdate);
+        Task SaveAsync();
     }
 }

@@ -19,7 +19,7 @@ async Task StartAsync()
     else if (serviceChoice == 2)
     {
         GetStudentInfoService service = new(new GetLastNameService());
-        Console.WriteLine(service.GetInfo(id));
+        Console.WriteLine(await service.GetInfo(id));
         await StartAsync();
     }
     else if (serviceChoice == 3)
@@ -32,4 +32,5 @@ async Task StartAsync()
         await StartAsync();
     }
 }
+await StartAsync();
 
