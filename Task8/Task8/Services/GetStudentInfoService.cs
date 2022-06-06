@@ -9,11 +9,6 @@ namespace Task7.Services
         private IInfoStringFormatter _infoStringFormatter;
         private IGenericRepository<Student> studentContext;
 
-        public GetStudentInfoService(IInfoStringFormatter infoStringFormatter)
-        {
-            _infoStringFormatter = infoStringFormatter;
-        }
-
         public void SetFormatter(IInfoStringFormatter infoStringFormatter)
         {
             _infoStringFormatter = infoStringFormatter;

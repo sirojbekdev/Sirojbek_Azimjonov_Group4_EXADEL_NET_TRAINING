@@ -1,16 +1,19 @@
-﻿using Microsoft.Extensions.Hosting;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Task7.Data;
-using Task7.Services;
+﻿using Task7.Services;
 
 namespace Task8
 {
     public class Runner : IRunner
     {
+        private IGetStudentInfoService _studentInfoService;
+        private IInfoStringFormatter _fullInfoService;
+        private IInfoStringFormatter _lastNameService;
+        public Runner(GetStudentInfoService studentInfoService, GetFullInfoService fullInfoService, GetLastNameService lastNameService)
+        {
+            _studentInfoService = studentInfoService;
+            _fullInfoService = fullInfoService;
+            _lastNameService = lastNameService;
+        }
+
         public async Task Run()
         {
             Console.WriteLine("1.Press 1 to get full info about student by id \n" +
@@ -20,18 +23,18 @@ namespace Task8
 
             if (serviceChoice == 1)
             {
-                GetStudentInfoService service = new(new GetFullInfoService());
+                _studentInfoService.SetFormatter(_fullInfoService);
                 Console.WriteLine("Enter the Id");
                 var id = int.Parse(Console.ReadLine());
-                Console.WriteLine(await service.GetInfo(id));
+                Console.WriteLine(await _studentInfoService.GetInfo(id));
                 await Run();
             }
             else if (serviceChoice == 2)
             {
-                GetStudentInfoService service = new(new GetLastNameService());
+                _studentInfoService.SetFormatter(_lastNameService);
                 Console.WriteLine("Enter the Id");
                 var id = int.Parse(Console.ReadLine());
-                Console.WriteLine(await service.GetInfo(id));
+                Console.WriteLine(await _studentInfoService.GetInfo(id));
                 await Run();
             }
             else if (serviceChoice == 3)
