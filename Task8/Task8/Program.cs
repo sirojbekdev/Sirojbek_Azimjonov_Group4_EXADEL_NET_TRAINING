@@ -39,12 +39,3 @@ namespace Task8
         }
     }
 }
-
-
-
-
-
-
-
-
-
