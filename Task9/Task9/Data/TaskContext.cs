@@ -9,18 +9,19 @@ namespace Task9.Data
         {
         }
 
-        public DbSet<Models.Task> Tasks { get; set; }
-        public DbSet<User> Users { get; set; }
-        public DbSet<Role> Roles { get; set; }
+        public virtual DbSet<Models.Task> Tasks { get; set; }
+        public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<Role> Roles { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<User>().HasMany(t => t.Performers)
-                .WithOne(g => g.Performer)
-                .HasForeignKey(g => g.PerformerId);
-            modelBuilder.Entity<User>().HasMany(t => t.Creators)
-                .WithOne(g => g.Creator)
-                .HasForeignKey(g => g.CreatorId);
+            modelBuilder.Entity<Models.Task>().HasOne(t => t.Performer)
+                .WithMany(g => g.Performers)
+                .HasForeignKey(g => g.PerformerId).OnDelete(DeleteBehavior.NoAction);
+            modelBuilder.Entity<Models.Task>().HasOne(t => t.Creator)
+                .WithMany(g => g.Creators)
+                .HasForeignKey(g => g.CreatorId).OnDelete(DeleteBehavior.Cascade);
+            modelBuilder.Entity<Models.Task>().Property(t => t.PerformerId).IsRequired(false);
         }
     }
 }

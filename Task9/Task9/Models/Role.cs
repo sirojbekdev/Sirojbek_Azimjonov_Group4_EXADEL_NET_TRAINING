@@ -1,5 +1,5 @@
 ﻿using FluentValidation;
-using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace Task9.Models
 {
@@ -7,15 +7,16 @@ namespace Task9.Models
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        ICollection<User> Users { get; set; }
+        [JsonIgnore]
+        public virtual ICollection<User> Users { get; set; }
     }
 
     public class RoleValidator : AbstractValidator<Role>
     {
         public RoleValidator()
         {
-            RuleFor(x => x.Id).NotNull();
-            RuleFor(x => x.Name).NotNull().Length(1,50);
+            RuleFor(x => x.Id).NotNull().NotEmpty();
+            RuleFor(x => x.Name).NotNull().MaximumLength(50);
         }
     }
 }
