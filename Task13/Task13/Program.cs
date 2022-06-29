@@ -1,4 +1,5 @@
-using Task13.Models;
+using MongoDB.Driver;
+using Task13.Data;
 using Task13.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -8,7 +9,9 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 builder.Services.Configure<DatabaseSettings>(
     builder.Configuration.GetSection("MongoDbConnectionStrings"));
+builder.Services.AddSingleton<IMongoClient, MongoClient>(sp => new MongoClient(builder.Configuration.GetSection("MongoDbConnectionStrings:ConnectionString").Value));
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
+
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();

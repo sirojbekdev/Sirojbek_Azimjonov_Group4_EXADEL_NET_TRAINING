@@ -1,4 +1,4 @@
-﻿namespace Task13.Models
+﻿namespace Task13.Data
 {
     public class DatabaseSettings
     {
